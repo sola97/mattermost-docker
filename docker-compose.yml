@@ -3,7 +3,6 @@ version: "3"
 services:
 
   db:
-    build: db
     image: sola97/mattermost-db
     read_only: true
     restart: unless-stopped
@@ -21,10 +20,8 @@ services:
     #  - AWS_REGION=us-east-1
 
   app:
-    build:
-      context: app
       # uncomment following lines for team edition or change UID/GID
-      # args:
+      #  args:
       #   - edition=team
       #   - PUID=1000
       #   - PGID=1000
@@ -55,11 +52,10 @@ services:
       #- MM_CONFIG=/mattermost/config/config.json
 
   web:
-    build: web
     image: sola97/mattermost-web
     ports:
-      - "80:8080"
-      - "443:8443"
+      - "20080:8080"
+      - "20443:8443"
     read_only: true
     restart: unless-stopped
     volumes:
