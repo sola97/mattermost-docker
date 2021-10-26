@@ -4,6 +4,7 @@ services:
 
   db:
     build: db
+    image: sola97/mattermost-db
     read_only: true
     restart: unless-stopped
     volumes:
@@ -28,6 +29,7 @@ services:
       #   - PUID=1000
       #   - PGID=1000
       #   - MM_VERSION=5.31
+    image: sola97/mattermost-app
     restart: unless-stopped
     volumes:
       - ./volumes/app/mattermost/config:/mattermost/config:rw
@@ -54,6 +56,7 @@ services:
 
   web:
     build: web
+    image: sola97/mattermost-web
     ports:
       - "80:8080"
       - "443:8443"
